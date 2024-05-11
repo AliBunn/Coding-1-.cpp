@@ -1,0 +1,127 @@
+// Brian Foster Week 13 Wednesday Coding 1b
+// C++ Headers, File i/o, and recap of classes.
+
+// how to use classes in main
+// constructors
+// hierarchy, parent/child, classes to other classes and classes to vectors.
+// initiation vs declaration (declaring vs defining a class.)
+
+// classes are definitions for :
+   // object (instances) that have variables inside.
+//vectors and arrays are containers, containers hold objects
+
+#include <iostream>
+#include <string>
+#include <vector>
+
+using namespace std;
+
+//declaring vs defining a class, or function
+
+//declare a function but define it later (after main)
+
+int triple(int number);
+
+class dogs {
+public:
+
+ string name;
+ int hungerLevel;
+ int mood;
+
+
+//constructor
+dogs(string givenName = "Max") {
+  name = givenName;
+  hungerLevel = 2;
+  mood = 2;
+  
+}
+
+
+void bark(){
+  cout << "My name is " << name << " .\n";
+  if(mood + hungerLevel > 15) cout << "I am raging!\n";
+  else if(mood + hungerLevel > 10) cout << "I am upset.\n";
+  else if(mood + hungerLevel > 5) cout << "I am cranky.\n";
+  else cout << "I am great.\n";
+  passTime();
+  
+}
+
+void runAround() {
+  cout << "I can catch the ball!! Watch me go!!\n";
+  mood += 1;
+  if(mood < 0 ) mood = 0; // clamp mood to max 5.
+  hungerLevel += 1;
+  
+}
+
+void snarf() {
+  hungerLevel-= 1;
+  if (hungerLevel < 0) hungerLevel = 0; // clamp hungerLevel to min of 0
+  mood += 1;
+}
+
+void passTime() {
+  hungerLevel += 1;
+  mood -= 1;
+}
+};
+
+int main() {
+ cout << ""Hello World!\n;
+
+string name = "Aalani";  // strings are a class
+int age = 24;  // they have variables and functions inside them
+
+cout << "There are " << name.size() << " characters in the name \n";
+cout << age << ".\n";
+
+name.erase(name.begin() + 2);
+
+cout << name << "\n";
+
+dogs bluey;
+dogs bingo = dogs("Bingo");
+  // create a variable of the type dogs named dog with the dogs.name of "Mr.GoodBoy"
+
+  dogs dog ( "Mr. Good Boy");
+  dog.bark();
+ while(true) {
+
+     getline(cin, input);
+
+     if(input == "STOP") {
+         cout << "Thanks for playing!\n";
+         break;
+     } else if(input == "BARK") {
+         dog.bark();
+     } else if(input == "PLAY") {
+         dog.runAround();
+     } else if(input == "FEED") {
+         dog.snarf();
+     } else {
+         cout << "That wasn't one of the options.\n";
+     }
+ } // END OF TAMAGOTCHI HAME
+
+// create a variable with the type vector<dogs> named poodles with 5 dogs inside.
+vector<dogs> poodles(5);
+
+// create a variable with the type vector<string> named names with 5 strings inside.
+vector<string> names(5);
+
+ vector<dogs> dogs(5);
+
+
+// create a for loop that calls the  .bark()function on each doggo in dogs.
+for(int i = 0; i < dogs.size(); i++);{
+
+   dogs[i].bark();
+} //end of main
+
+// defining a function
+int triple(int n) {
+  return n + n + n;
+}
